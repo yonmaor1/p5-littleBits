@@ -1,7 +1,3 @@
-const START_BYTE = '80';
-const TRANSMIT_BYTE = '81';
-const RECEIVE_BYTE = '82';
-const END_BYTE = '8F';
 const ERR_MSG = '-1,-1,-1';
 
 /**

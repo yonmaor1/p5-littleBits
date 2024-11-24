@@ -1,6 +1,22 @@
+/**
+ * 
+ * Little Bits arduino program to write and receive data over serial
+ *
+ * specs: 
+ *     arduino model : Arduino Leonardo
+ *     baud rate : 9600
+ *     data in from arduino : 0 - 1024
+ *     data out from arduino : 0 - 255
+ *     data sent from arduino must be received over serial in the following format:
+ *         three comma-seperated integers, values 0 - 255, with optional space after seperator,
+ *         with start / end delimiters < and >.
+ *         ie: <0, 12, 24>
+ * 
+ */
 
 // values received from serial, to be outputted from arduino
 int d1 = 0, d5 = 0, d9 = 0;
+const int maxOutput = 255;
 
 // values inputted to arduino, to be transmitted over serial
 int d0 = 0, a0 = 0, a1 = 0;
@@ -12,32 +28,43 @@ char tempChars[numChars];
 
 boolean newData = false;
 
+const char startMarker = '<';
+const char endMarker = '>';
+const char *separator = ",";
+
 void setup() {
   Serial.begin(9600);
-  Serial.println("Expecting data in this style : <0, 12, 24>  ");
+  Serial.println("Expecting data in this style : <0, 12, 24>  "); // integers must be 0 - 255, spaces no required
 }
 
 void loop() {
 
-  // read serial data
+  // read serial data and parse it
+  receiveData();
+
+  // read digital / analog input data and echo to serial port
+  transmitData();
+}
+
+void receiveData() {
   recvWithStartEndMarkers();
   if (newData == true) {
     strcpy(tempChars, receivedChars); // temporary copy to protect the original data
     parseData();
-    // showParsedData(); // write parsed data to serial monitor (debug)
+    // echoReceived(); // write parsed data to serial monitor (debug)
     outputParsedData(); // output parsed data to output pins
     newData = false;
   }
-
-  // read digital / analog input data
-  d0 = digitalRead(0);
-  a0 = analogRead(A0);
-  a1 = analogRead(A1);
-
-  transmitData();
 }
 
 void transmitData() {
+  d0 = digitalRead(0);
+  a0 = analogRead(A0);
+  a1 = analogRead(A1);
+  echoTransmitted();
+}
+
+void echoTransmitted() {
   // Serial.print("Received: ");
   Serial.print(d0);
   Serial.print(",");
@@ -49,8 +76,6 @@ void transmitData() {
 void recvWithStartEndMarkers() {
   static boolean recvInProgress = false;
   static byte recvIndex = 0;
-  char startMarker = '<';
-  char endMarker = '>';
   char rc;
 
   while (Serial.available() > 0 && newData == false) {
@@ -79,21 +104,19 @@ void recvWithStartEndMarkers() {
 }
 
 void parseData() {
-
   char *strtokIndex;
 
-  strtokIndex = strtok(tempChars,",");
-  d1 = atoi(strtokIndex);
+  strtokIndex = strtok(tempChars, separator);
+  d1 = constrain(atoi(strtokIndex), 0, maxOutput);
 
-  strtokIndex = strtok(NULL, ",");
-  d5 = atoi(strtokIndex);
+  strtokIndex = strtok(NULL, separator);
+  d5 = constrain(atoi(strtokIndex), 0, maxOutput);
 
-  strtokIndex = strtok(NULL, ",");
-  d9 = atoi(strtokIndex);
-
+  strtokIndex = strtok(NULL, separator);
+  d9 = constrain(atoi(strtokIndex), 0, maxOutput);
 }
 
-void showParsedData() {
+void echoReceived() {
   Serial.print(d1);
   Serial.print(',');
   Serial.print(d5);
@@ -107,3 +130,4 @@ void outputParsedData() {
   analogWrite(5, d5);
   analogWrite(9, d9);
 }
+

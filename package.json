@@ -1,0 +1,32 @@
+{
+  "name": "p5-littlebits",
+  "version": "1.0.0",
+  "description": "get data in and out of LittleBits components via p5js / prossesing",
+  "main": "golive.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yonmaor1/p5-littleBits.git"
+  },
+  "keywords": [
+    "p5js",
+    "processing",
+    "LittleBits",
+    "serial"
+  ],
+  "author": "Yon Maor",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/yonmaor1/p5-littleBits/issues"
+  },
+  "homepage": "https://github.com/yonmaor1/p5-littleBits#readme",
+  "dependencies": {
+    "axios": "^1.7.7",
+    "body-parser": "^1.20.3",
+    "child_process": "^1.0.2",
+    "cors": "^2.8.5",
+    "express": "^4.21.1"
+  }
+}

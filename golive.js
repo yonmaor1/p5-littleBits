@@ -45,6 +45,7 @@ python_server.stdout.on('data', (data) => {
     }
 });
 
+
 python_server.stderr.on('data', (data) => {
     if (data.includes('Address already in use')) {
         console.log(`Port ${port} is already in use`);
@@ -71,6 +72,10 @@ nodeServer.stdout.on('data', (data) => {
 nodeServer.stderr.on('data', (data) => {
     if (data.includes('SerialPortNotFoundError')) {
         console.error(data);
+        process.exit(1);
+    } else if (data.includes(`cannot open /dev/cu.usbmodem${serialPortNum}`)) {
+        console.error(`SerialPortNotFoundError: Serial port /dev/cu.usbmodem${serialPortNum} not found`);
+        console.error('Did you enter the correct serial port number?');
         process.exit(1);
     }
     console.error(`Node.js Server Error: ${data}`);

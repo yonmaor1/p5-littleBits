@@ -1,7 +1,6 @@
 # p5-littleBits
 
-Get data in and out of LittleBits components via p5.js, Processing, or TouchDesigner.
-
+Get data in and out of littleBits components via the littleBits Arduino and p5.js, Processing, or TouchDesigner.
 
 ---
 
@@ -23,9 +22,11 @@ We will flash a special program onto the littleBits Arduino Bit.
 * Launch the Arduino IDE software. It may manage some additional installs the first time. 
 * From Arduino IDE, open the file `p5-littleBits.ino`. 
 * Make sure to select the "**Arduino Leonardo**" model of board in the pulldown menu. 
-* From the pulldown menu, make a note of the *name* of your Arduino board's serial controller. For example, on my Mac, the name of my specific littleBits Arduino is `/dev/cu.usbmodem11301`. This varies from device to device. 
+* From the pulldown menu, make a note of the *name* of your Arduino board's serial controller. For example, on my Mac, the name of my specific littleBits Arduino is `/dev/cu.usbmodem11301`. This ID varies from device to device. 
 * In Arduino IDE menu: *Sketch > Verify/Compile* (Command-R)
 * In Arduino IDE menu: *Sketch > Upload* (Command-U)
+
+![leonardo-in-menu.png](documentation/leonardo-in-menu.png)
 
 ## Example littleBits Rig
 

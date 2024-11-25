@@ -12,11 +12,16 @@ let canvas;
 function setup() {
     canvas = createCanvas(800, 600);
     textAlign(CENTER, CENTER);
+    textFont('monospace');
     rectMode(CENTER);
 }
 
 function draw() {
     background(0);
+
+    noStroke();
+    fill('white');
+    text('pLittleBits', width/2, 50);
 
     getInputSignals()
     drawInputSignals()
@@ -52,27 +57,46 @@ function getInputSignals() {
 
 function drawInputSignals() {
     fill('white');
+    noStroke();
     text('d0: ' + d0, width/4, height/4);
     text('a0: ' + a0, width/4, height/2);
     text('a1: ' + a1, width/4, 3 * height/4);
 
+    display_d0 = d0 ? 0.9 * height/4 : 50;
+    display_a0 = map(a0, 0, 1024, 50, 0.9 * height/4);
+    display_a1 = map(a1, 0, 1024, 50, 0.9 * height/4);
+
     noFill();
     stroke('white');
-    circle(width/4, height/4, 50 + 1024 * (d0 / 10));
-    circle(width/4, height/2, 50 + a0 / 10);
-    circle(width/4, 3 * height/4, 50 + a1 / 10);
+    circle(width/4, height/4, display_d0);
+    circle(width/4, height/2, display_a0);
+    circle(width/4, 3 * height/4, display_a1);
+
+    arrow(width/12, height/4, 50, 0);
+    arrow(width/12, height/2, 50, 0);
+    arrow(width/12, 3 * height/4, 50, 0);
 }
 
 function drawOutputSignals() {
+    fill('white');
+    noStroke();
     text('d1: ' + d1, width - width/4, height/4);
     text('d5: ' + d5, width - width/4, height/2);
     text('d9: ' + d9, width - width/4, 3 * height/4);
 
+    display_d1 = map(d1, 0, 255, 50, 0.9 * height/4);
+    display_d5 = map(d5, 0, 255, 50, 0.9 * height/4);
+    display_d9 = map(d9, 0, 255, 50, 0.9 * height/4);
+
     noFill();
     stroke('white');
-    circle(width - width/4, height/4, 50 + 4 * (d1 / 10));
-    circle(width - width/4, height/2, 50 + 4 * (d5 / 10));
-    circle(width - width/4, 3 * height/4, 50 + 4 * (d9 / 10));
+    circle(width - width/4, height/4, display_d1);
+    circle(width - width/4, height/2, display_d5);
+    circle(width - width/4, 3 * height/4, display_d9);
+
+    arrow(width - width/12 - 50, height/4, 50, 0);
+    arrow(width - width/12 - 50, height/2, 50, 0);
+    arrow(width - width/12 - 50, 3 * height/4, 50, 0);
 }
 
 /**

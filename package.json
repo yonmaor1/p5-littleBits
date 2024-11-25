@@ -23,7 +23,6 @@
   },
   "homepage": "https://github.com/yonmaor1/p5-littleBits#readme",
   "dependencies": {
-    "axios": "^1.7.7",
     "body-parser": "^1.20.3",
     "child_process": "^1.0.2",
     "cors": "^2.8.5",

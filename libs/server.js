@@ -1,11 +1,11 @@
 const express = require('express');
+const app = express();
+
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const { SerialPort } = require('serialport')
 const { ReadlineParser } = require('@serialport/parser-readline')
-const axios = require('axios');
-const app = express();
-const port = 3000;
+const port = 3081;
 
 const args = process.argv.slice(2);
 let serialPortArg = args[0];
@@ -82,6 +82,11 @@ app.get('/read-signal', (req, res) => {
   res.send({ message: latestData });
 });
 
-app.listen(port, () => {
-  console.log(`Node.js server listening at http://localhost:${port}`);
+
+app.listen(port, (err) => {
+  if (err) {
+    console.error('Error starting server:', err);
+  } else {
+    console.log(`Node.js server listening at http://localhost:${port}`);
+  }
 });

@@ -6,7 +6,7 @@ const ERR_MSG = '-1,-1,-1';
  * @param {string} msg command to send
  */
 function send_signal(msg) {
-    fetch('http://localhost:3000/send-signal', {
+    fetch('http://localhost:3081/send-signal', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -26,7 +26,7 @@ function send_signal(msg) {
  * @returns {Promise<string>} the latest signal data
  */
 function read_signal() {
-    return fetch('http://localhost:3000/read-signal')
+    return fetch('http://localhost:3081/read-signal')
         .then(response => response.json())
         .then(data => data.message)
         .catch(error => {

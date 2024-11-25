@@ -26,7 +26,7 @@ python_server.stderr.on('data', (data) => {
 console.log(`hosting local server at http://localhost:${port}`);
 
 // Start the Node.js server
-const nodeServer = exec('node ./libs/server.js', { cwd: __dirname });
+let nodeServer = exec('node ./libs/server.js', { cwd: __dirname });
 
 nodeServer.stdout.on('data', (data) => {
     if (verbose) {
@@ -38,6 +38,10 @@ nodeServer.stderr.on('data', (data) => {
     if (data.includes('SerialPortNotFoundError')) {
         console.error(data);
         process.exit(1);
+    } else if (data.includes('ENXIO')) {
+        console.error('Serial port not found, restarting server...');
+        nodeServer.kill();
+        nodeServer = exec('node ./libs/server.js', { cwd: __dirname });
     }
     console.error(`Node.js Server Error: ${data}`);
 });

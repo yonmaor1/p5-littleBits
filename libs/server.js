@@ -7,6 +7,7 @@ const axios = require('axios');
 const app = express();
 const port = 3000;
 
+// TODO: make this a cli input
 const serialPortPath = '/dev/cu.usbmodem2101'; // Replace with your serial port path
 const baudRate = 9600;
 

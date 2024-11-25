@@ -37,9 +37,9 @@ $ node golive.js [-v : optional, enables verbose mode]
 
 and navigate to http://localhost:8081/p5 in your favorite web browser
 
-TODO:
+## TODO:
 
-serial port disconnects on power surge (?)
+- serial port disconnects on power surge (?)
 ```
 Node.js Server Error: Error writing to serial port: ENXIO: no such device or address, write
 
@@ -54,4 +54,7 @@ Node.js Server Error: Error: [Error: ENXIO: no such device or address, write] {
   syscall: 'write',
   disconnect: true
 }
+
 ```
+
+- make serial address a cli input

@@ -7,8 +7,16 @@ const axios = require('axios');
 const app = express();
 const port = 3000;
 
-const serialPortPath = '/dev/cu.usbmodem11301'; // Replace with your serial port path
+const args = process.argv.slice(2);
+let serialPortArg = args[0];
+if (!serialPortArg) {
+  console.log('No serial port argument provided, defalting to 2101');
+  serialPortArg = '2101';
+}
+const serialPortPath = `/dev/cu.usbmodem${serialPortArg}`;
 const baudRate = 9600;
+
+console.log(`Opening serial port ${serialPortPath} at baud rate ${baudRate}`);
 
 const serialPort = new SerialPort({
   path: serialPortPath,

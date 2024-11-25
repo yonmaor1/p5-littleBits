@@ -1,8 +1,12 @@
 const { exec } = require('child_process');
 
 const port = 8081;
-const args = process.argv.slice(2);
+
+let args = process.argv.slice(2);
 const verbose = args.includes('-v');
+if (verbose) {
+    args = args.filter(arg => arg != '-v');
+}
 
 
 let python_server = exec(`python3 ./libs/server.py ${port}`, { cwd: __dirname });
@@ -26,7 +30,9 @@ python_server.stderr.on('data', (data) => {
 console.log(`hosting local server at http://localhost:${port}`);
 
 // Start the Node.js server
-const nodeServer = exec('node ./libs/server.js', { cwd: __dirname });
+let serialPortArg = args[0];
+let serialPortNum = serialPortArg ? serialPortArg : "";
+const nodeServer = exec(`node ./libs/server.js ${serialPortNum}`, { cwd: __dirname });
 
 nodeServer.stdout.on('data', (data) => {
     if (verbose) {

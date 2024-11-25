@@ -55,7 +55,7 @@ python_server.stderr.on('data', (data) => {
     }
 });
 
-console.log(`hosting local server at http://localhost:${port}`);
+console.log(`hosting local server at http://localhost:${port}\n`);
 
 // Start the Node.js server
 let serialPortArg = args[0];

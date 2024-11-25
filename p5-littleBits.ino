@@ -65,12 +65,13 @@ void transmitData() {
 }
 
 void echoTransmitted() {
-  // Serial.print("Received: ");
+  Serial.print(startMarker);
   Serial.print(d0);
   Serial.print(",");
   Serial.print(a0);
   Serial.print(",");
-  Serial.println(a1);
+  Serial.print(a1);
+  Serial.println(endMarker);
 }
 
 void recvWithStartEndMarkers() {

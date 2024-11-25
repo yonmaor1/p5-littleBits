@@ -28,7 +28,7 @@ function send_signal(msg) {
 function read_signal() {
     return fetch('http://localhost:3000/read-signal')
         .then(response => response.json())
-        .then(data => data.data)
+        .then(data => data.message)
         .catch(error => {
             console.error('Error:', error);
             return ERR_MSG;

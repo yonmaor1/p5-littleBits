@@ -35,6 +35,13 @@ function getInputSignals() {
     read_signal().then(signal => {
         if (signal) {
             // data = signal.data;
+
+            // The data looks like: `<d0,a0,a1>`
+            // We need to split the string into an array of integers
+            // First, remove the `<` and `>` characters from the string
+            signal = signal.replace('<', '').replace('>', '');
+
+            // Split the string into an array of integers
             [d0, a0, a1] = signal.split(',').map(Number);
             // print([d0, a0, a1])
         } else {
@@ -51,9 +58,9 @@ function drawInputSignals() {
 
     noFill();
     stroke('white');
-    ellipse(width/4, height/4, 50 + 1024 * (d0 / 10));
-    ellipse(width/4, height/2, 50 + a0 / 10);
-    ellipse(width/4, 3 * height/4, 50 + a1 / 10);
+    circle(width/4, height/4, 50 + 1024 * (d0 / 10));
+    circle(width/4, height/2, 50 + a0 / 10);
+    circle(width/4, 3 * height/4, 50 + a1 / 10);
 }
 
 function drawOutputSignals() {
@@ -63,9 +70,9 @@ function drawOutputSignals() {
 
     noFill();
     stroke('white');
-    ellipse(width - width/4, height/4, 50 + 4 * (d1 / 10));
-    ellipse(width - width/4, height/2, 50 + 4 * (d5 / 10));
-    ellipse(width - width/4, 3 * height/4, 50 + 4 * (d9 / 10));
+    circle(width - width/4, height/4, 50 + 4 * (d1 / 10));
+    circle(width - width/4, height/2, 50 + 4 * (d5 / 10));
+    circle(width - width/4, 3 * height/4, 50 + 4 * (d9 / 10));
 }
 
 /**

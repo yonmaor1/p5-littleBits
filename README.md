@@ -1,26 +1,41 @@
 # p5-littleBits
 get data in and out of LittleBits components via p5js / prossesing
 
-## setup instructions
-fire up your favorite terminal, cd somewhere comfortable and clone this repo
+
+---
+
+## Setup Instructions
+
+Fire up your favorite terminal, cd somewhere comfortable and clone this repo
+
 ```
 $ git clone https://github.com/yonmaor1/p5-littleBits.git
 $ cd p5-littleBits
 ```
 
-ensure you have [npm installed](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm). You will need npm version 16.0.0 or higher.
+### Arduino Instructions
 
-run
-```
-$ npm install
-```
+We will flash a special program onto the LittleBits Arduino Bit. 
 
-ensure this worked by running
-```
-$ npm list
-```
+* Install the [Arduino IDE](https://www.arduino.cc/en/software). 
+* Connect the LittleBits Arduino Bit to your computer's USB port. 
+* Launch the Arduino IDE software. It may manage some additional installs the first time. 
+* From Arduino IDE, open the file `p5-littleBits.ino`. 
+* Make sure to select the "Arduino Leonardo" model of board in the pulldown menu. 
+* In Arduino IDE menu: *Sketch > Verify/Compile* (Command-R)
+* In Arduino IDE menu: *Sketch > Upload* (Command-U)
 
-you should see something like this:
+
+### Instructions for p5-to-LittleBits
+
+Ensure you have [npm installed](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm). You will need npm version 16.0.0 or higher.
+
+Run: `$ npm install`
+
+Ensure this worked by running: `$ npm list`
+
+You should see something like this:
+
 ```
 p5-flipdots@1.0.0 /path/to/p5-flipdots
 ├── axios@1.7.7
@@ -30,7 +45,8 @@ p5-flipdots@1.0.0 /path/to/p5-flipdots
 └── express@4.21.1
 ```
 
-to launch the program, run
+To launch the program, run
+
 ```
 $ node golive.js [-v : optional, enables verbose mode]
 ``` 

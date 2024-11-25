@@ -7,7 +7,7 @@ const axios = require('axios');
 const app = express();
 const port = 3000;
 
-const serialPortPath = '/dev/cu.usbmodem2101'; // Replace with your serial port path
+const serialPortPath = '/dev/cu.usbmodem11301'; // Replace with your serial port path
 const baudRate = 9600;
 
 const serialPort = new SerialPort({
@@ -71,7 +71,7 @@ app.post('/send-signal', (req, res) => {
 });
 
 app.get('/read-signal', (req, res) => {
-  res.send({ data: latestData });
+  res.send({ message: latestData });
 });
 
 app.listen(port, () => {

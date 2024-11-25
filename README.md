@@ -2,6 +2,9 @@
 
 Get data in and out of littleBits components via the littleBits Arduino and p5.js, Processing, or TouchDesigner.
 
+## tldr : here's a block diagram of the system 
+
+![System Diagram](documentation/littleBitsArduino.png)
 ---
 
 ## First Steps: Clone this Repo

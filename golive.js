@@ -1,3 +1,13 @@
+/**
+ * starts the python server which hosts p5.js, and the node server which talks to the serial port
+ * 
+ * usage: $ node golive.js [serialPort] [-v] [-h]
+ * 
+ * @param {string} serialPort the serial port number to use. If your arduino is on serial port is /dev/cu.usbmodem2101, use 2101
+ * @param {string} -v verbose mode 
+ * @param {string} -h print this help message and exit
+ */
+
 const { exec } = require('child_process');
 
 const port = 8081;
@@ -8,6 +18,24 @@ if (verbose) {
     args = args.filter(arg => arg != '-v');
 }
 
+const help = args.includes('-h');
+if (help) {
+    console.log('golive.js');
+    console.log('starts the python server which hosts p5.js, and the node server which talks to the serial port');
+    console.log('usage: $ node golive.js [serialPort] [-v] [-h]');
+    console.log('');
+    console.log('  serialPort : (required) the serial port number to use.');
+    console.log('               If your arduino is on serial port is /dev/cu.usbmodem2101, use 2101');
+    console.log('  -v : verbose mode');
+    console.log('  -h : print this help message and exit');
+
+    process.exit(0);
+}
+
+if (args.length < 1) {
+    console.error('Error: serialPort argument is required');
+    process.exit(1);
+}
 
 let python_server = exec(`python3 ./libs/server.py ${port}`, { cwd: __dirname });
 

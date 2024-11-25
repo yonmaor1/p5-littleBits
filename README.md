@@ -81,23 +81,23 @@ Ensure this worked by running: `$ npm list`
 You should see something like this:
 
 ```
-p5-flipdots@1.0.0 /path/to/p5-flipdots
-├── axios@1.7.7
+p5-littleBits@1.0.0 /path/to/p5-littleBits
 ├── body-parser@1.20.3
 ├── child_process@1.0.2
 ├── cors@2.8.5
-└── express@4.21.1
+├── express@4.21.1
+└── serialport@12.0.0
 ```
 
 To launch the program, run
 
 ```
-$ node golive.js 
+$ node golive.js serialPortNumber
 ``` 
 or for verbose output, 
 
 ```
-$ node golive.js -v
+$ node golive.js serialPortNumber -v
 ``` 
 
 

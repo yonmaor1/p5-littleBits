@@ -9,10 +9,10 @@
  * - data in from arduino : 0 - 1024
  * - data out from arduino : 0 - 255
  * - data sent from arduino must be received over serial in the following format:
- *    three comma-seperated integers, values 0 - 255, with optional space after 
- *    seperator, with start / end delimiters < and >.
- *    ie:     <0, 12, 24>
- * 
+ *   three comma separated integers, values 0 - 255, with optional space after 
+ *   separator, with start / end delimiters '<' and '>'.
+ *   
+ *   ie:     <0, 12, 24>
  */
 
 // values received from serial, to be outputted from arduino

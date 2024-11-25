@@ -35,7 +35,7 @@ to launch the program, run
 $ node golive.js [-v : optional, enables verbose mode]
 ``` 
 
-and navigate to http://localhost:8081/p5 in your favorite web browser
+and navigate to http://localhost:8081/p5js in your favorite web browser
 
 ## TODO:
 

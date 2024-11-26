@@ -97,12 +97,14 @@ To launch the program, run
 ```
 $ node golive.js serialPortNumber
 ``` 
+
 or for verbose output, 
 
 ```
 $ node golive.js serialPortNumber -v
 ``` 
 
+(If your Arduino is on serial port is `/dev/cu.usbmodem2101`, use `2101` as the number.)
 
 and navigate to [http://localhost:8081/p5](http://localhost:8081/p5) in your favorite web browser.
 
